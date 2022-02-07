@@ -1,0 +1,5 @@
+apiVersion: v2
+name: a-helm-application
+version: 1.0.0
+kubeVersion: >= 1.17
+description: A generic helm chart that can be used for most microservices.

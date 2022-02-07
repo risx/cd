@@ -1,0 +1,21 @@
+namespace: "wistful"
+applications:
+  - name: "game-server"
+    port: 18080
+    url: "api.wistful.io"
+    image_url: "ghcr.io/risx/wistful/wistful-frontend"
+    version: v1.0.0
+    resources:
+      cpu: 50m
+      memory: 150mi
+      cpu_autoscaling: 70%
+  - name: "frontend"
+    port: 8080
+    url: "wistful.io"
+    image_url: "ghcr.io/risx/wistful/wistful-frontend"
+    version: v1.0.0
+    resources:
+      cpu: 50m
+      memory: 150mi
+      cpu_autoscaling: 70%
+gcp_spot: "true"

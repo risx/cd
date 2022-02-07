@@ -1,0 +1,17 @@
+{{- range $key, $value := .Values.applications }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: wistful
+    type: frontend
+  ports:
+  - name: http
+    port: 80
+    targetPort: 3000
+    protocol: TCP
+  type: ClusterIP
+{{- end }}

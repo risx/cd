@@ -1,0 +1,28 @@
+{{- range $key, $value := .Values.applications }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $value.name }}-deployment
+spec:
+  selector:
+    matchLabels:
+      app: wistful
+      type: frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        type: frontend
+    spec:
+      containers:
+      - name: {{ $value.name }}
+        image: {{ $value.image_url }}
+        resources:
+          limits:
+            cpu: "50m"
+            memory: "150Mi"
+        ports:
+        - containerPort: 3000
+      imagePullSecrets:
+      - name: wistful-gh-access
+{{- end }}
